@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Example - example-guide-concepts-1-production</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="customSelect.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </head>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: cornflowerblue;
+        }
+
+        h1 {
+            color: white;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-weight: bold;
+        }
+
+        .form_label {
+            padding-top: 10px;
+        }
+
+        td,
+        th {
+            text-align: center;
+        }
+
+        input[type=number] {
+            border-radius: 5px;
+        }
+
+        table{
+          background-color: white;
+        }
+
+        th.rotate {
+          /* Something you can count on */
+          height: 10px;
+          white-space: nowrap;
+        }
+
+        th.rotate > div {
+          transform:
+            /* Magic Numbers */
+            translate(0px, 161px)
+            /* 45 is really 360 - 45 */
+            rotate(90deg);
+          width: 10px;
+        }
+        th.rotate > div > span {
+        }
+    </style>
+
+    <body>
+
+        <div class="container">
+
+            <div ng-app ng-init="qty=1;cost=0.75;width=1;height=1;">
+                <h1>Screw Calc</h1>
+                <hr/>
+
+                <form name="myForm">
+                    <label for="singleSelect">
+                        <h2>
+                            Main Workpiece:
+                        </h2>
+                    </label>
+                    <br/>
+                    <span class="custom-dropdown custom-dropdown--white">
+                    <select class="custom-dropdown__select custom-dropdown__select--white" name="singleSelect" id="singleSelect" ng-model="data.singleSelect" onchange="showit();">
+                        <option value="1">1/2"</option>
+                        <option value="1">5/8"</option>
+                        <option value="1-1/4">3/4"</option>
+                        <option value="1-1/2">7/8"</option>
+                        <option value="1-1/2">1"</option>
+                        <option value="1-1/2">1-1/8"</option>
+                        <option value="2">1-1/4"</option>
+                        <option value="2">1-3/8"</option>
+                        <option value="2-1/2">1-1/2"</option>
+                    </select>
+                  </span>
+                    <br/>
+                    <label for="joinSelect">
+                        <h2>
+                            Joining Workpiece:
+                        </h2>
+                    </label>
+                    <br/>
+                                        <span class="custom-dropdown custom-dropdown--white">
+                    <select class="custom-dropdown__select custom-dropdown__select--white"  name="joinSelect" id="joinSelect" ng-model="data.joinSelect" onchange="showit();">
+                        <option value="1">1/2"</option>
+                        <option value="1">5/8"</option>
+                        <option value="1-1/4">3/4"</option>
+                        <option value="1-1/2">7/8"</option>
+                        <option value="1-1/2">1"</option>
+                        <option value="1-1/2">1-1/8"</option>
+                        <option value="2">1-1/4"</option>
+                        <option value="2">1-3/8"</option>
+                        <option value="2-1/2">1-1/2"</option>
+                    </select>
+                  </span>
+                </form>
+
+                <div id="dalength" style="visibility: hidden;">
+                    <h2>Screw length:
+                        {{ data.singleSelect }}"</h2>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="theMatrix">
+                    <thead>
+                        <div style="text-align: center; color: black; background-color: white; font-weight: bold;">Joining Thickness</div>
+                        <tr>
+                          <th></th>
+                            <th></th>
+                            <th>1/2"</th>
+                            <th>5/8"</th>
+                            <th>3/4"</th>
+                            <th>7/8"</th>
+                            <th>1"</th>
+                            <th>1 1/8"</th>
+                            <th>1 1/4"</th>
+                            <th>1 3/8"</th>
+                            <th>1 1/2"</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th  rowspan="10" class="rotate"><div><span>Main Thickness</span></div></th>
+                            <th scope="row">1/2"</th>
+                            <td id="1212">1/2" Jig<br/>
+                                1" Screw</td>
+                            <td id="1258">1/2" Jig<br/>
+                                1" Screw</td>
+                            <td id="1234">1/2" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="1278">1/2" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="121">1/2" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="12118">1/2" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="12114">1/2" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="12138">1/2" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="12112">1/2" Jig<br/>
+                                2" Screw</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5/8"</th>
+                            <td id="5812">5/8" Jig<br/>
+                                1" Screw</td>
+                            <td id="5858">5/8" Jig<br/>
+                                1" Screw</td>
+                            <td id="5834">5/8" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="5878">5/8" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="581">5/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="58118">5/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="58114">5/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="58138">5/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="58112">5/8" Jig<br/>
+                                2" Screw</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3/4"</th>
+                            <td id="3412">5/8" Jig<br/>
+                                1" Screw</td>
+                            <td id="3458">5/8" Jig<br/>
+                                1" Screw</td>
+                            <td id="3434">3/4" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="3478">3/4" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="341">3/4" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="34118">3/4" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="34114">3/4" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="34138">3/4" Jig<br/>
+                                2" Screw</td>
+                            <td id="34112">3/4" Jig<br/>
+                                2" Screw</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">7/8"</th>
+                            <td id="7812">3/4" Jig<br/>
+                                1" Screw</td>
+                            <td id="7858">7/8" Jig<br/>
+                                1" Screw</td>
+                            <td id="7834">3/4" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="7878">7/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="781">7/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="78118">7/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="78114">7/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="78138">7/8" Jig<br/>
+                                2" Screw</td>
+                            <td id="78112">7/8" Jig<br/>
+                                2" Screw</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1"</th>
+                            <td id="112">1" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="158">1" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="134">1" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="178">1" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="11">1" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="1118">1" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="1114">1" Jig<br/>
+                                2" Screw</td>
+                            <td id="1138">1" Jig<br/>
+                                2" Screw</td>
+                            <td id="1112">1" Jig<br/>
+                                2" Screw</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1 1/8"</th>
+                            <td id="11812">1 1/8" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="11858">1" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="11834">1 1/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="11878">1" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="1181">1 1/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="118118">1 1/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="118114">1 1/8" Jig<br/>
+                                2" Screw</td>
+                            <td id="118138">1 1/8" Jig<br/>
+                                2" Screw</td>
+                            <td id="118112">1 1/8" Jig<br/>
+                                2" Screw</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1 1/4"</th>
+                            <td id="11412">1 1/8" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="11458">1 1/8" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="11434">1 1/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="11478">1 1/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="1141">1 1/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="114118">1 1/8" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="114114">1 1/4" Jig<br/>
+                                2" Screw</td>
+                            <td id="114138">1 1/4" Jig<br/>
+                                2" Screw</td>
+                            <td id="114112">1 1/4" Jig<br/>
+                                2" Screw</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1 3/8"</th>
+                            <td id="13812">1 1/8" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="13858">1" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="13834">1 1/4" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="13878">1" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="1381">1 3/8" Jig<br/>
+                                2" Screw</td>
+                            <td id="138118">1 3/8" Jig<br/>
+                                2" Screw</td>
+                            <td id="138114">1 3/8" Jig<br/>
+                                2" Screw</td>
+                            <td id="138138">1 3/8" Jig<br/>
+                                2" Screw</td>
+                            <td id="138112">1 3/8" Jig<br/>
+                                2 1/2" Screw</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1 1/2"</th>
+                            <td id="11212">1 1/8" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="11258">1" Jig<br/>
+                                1 1/4" Screw</td>
+                            <td id="11234">1 1/4" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="11278">1" Jig<br/>
+                                1 1/2" Screw</td>
+                            <td id="1121">1 3/8" Jig<br/>
+                                2" Screw</td>
+                            <td id="112118">1 3/8" Jig<br/>
+                                2" Screw</td>
+                            <td id="112114">1 1/4" Jig<br/>
+                                2" Screw</td>
+                            <td id="112138">1 1/2" Jig<br/>
+                                2 1/2" Screw</td>
+                            <td id="112112">1 1/2" Jig<br/>
+                                2 1/2" Screw</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    function showit() {
+      resetTable();
+        //$("#dalength").css("visibility", "visible");
+        var first = $("#singleSelect option:selected").text();
+        var second = $("#joinSelect option:selected").text();
+        var theCode = first + second;
+        theCode = theCode.replace(/\D/g, '');
+        //alert(theCode);
+        $("#" + theCode + "").css("background-color", "grey");
+    }
+
+    function resetTable() {
+      $("td").css("background-color","");
+    }
+</script>
+</html>
