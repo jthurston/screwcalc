@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Example - example-guide-concepts-1-production</title>
+        <title>Screw Calc</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="style/screwcalc.css">
@@ -68,8 +68,11 @@
             <div ng-app ng-init="qty=1;cost=0.75;width=1;height=1;">
                 <h1>Screw Calc</h1>
                 <hr/>
-
+                <div style="float: left; padding-right: 20px;">
+                  <img src="images/diagram.png" width=100px;/>
+                </div>
                 <form name="myForm">
+                  <div>
                     <label for="singleSelect">
                         <h2>
                             Main Workpiece:
@@ -90,6 +93,8 @@
                     </select>
                   </span>
                     <br/>
+                  </div>
+                  <div style="float: left;">
                     <label for="joinSelect">
                         <h2>
                             Joining Workpiece:
@@ -109,7 +114,9 @@
                         <option value="2-1/2">1-1/2"</option>
                     </select>
                   </span>
+                </div>
                 </form>
+              <div style="clear: both;"></div>
 
                 <div id="dalength" style="visibility: hidden;">
                     <h2>Screw length:
