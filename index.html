@@ -66,17 +66,22 @@
         <div class="container">
 
             <div ng-app ng-init="qty=1;cost=0.75;width=1;height=1;">
-                <h1>Screw Calc</h1>
-                <hr/>
-                <div style="float: left; padding-right: 20px;">
-                  <img src="images/diagram.png" width=100px;/>
+                
+                <div class="row">
+                    <h1>Screw Calc</h1>    
+                    <hr/>
+                </div>
+
+                <div class="row">
+                    
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <img src="images/diagram.png" width=100px;/>
                 </div>
                 <form name="myForm">
-                  <div>
+                
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">                    
                     <label for="singleSelect">
-                        <h2>
-                            Main Workpiece:
-                        </h2>
+                            Main
                     </label>
                     <br/>
                     <span class="custom-dropdown custom-dropdown--white">
@@ -92,13 +97,10 @@
                         <option value="2-1/2">1-1/2"</option>
                     </select>
                   </span>
-                    <br/>
-                  </div>
-                  <div style="float: left;">
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">                    
                     <label for="joinSelect">
-                        <h2>
-                            Joining Workpiece:
-                        </h2>
+                            Joining
                     </label>
                     <br/>
                                         <span class="custom-dropdown custom-dropdown--white">
@@ -115,6 +117,7 @@
                     </select>
                   </span>
                 </div>
+            </div>                                                
                 </form>
               <div style="clear: both;"></div>
 
