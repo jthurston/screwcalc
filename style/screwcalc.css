@@ -1,3 +1,63 @@
+ body {
+            font-family: sans-serif;
+            background-color: cornflowerblue;
+        }
+
+        h1 {
+            color: white;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-weight: bold;
+        }
+
+        .form_label {
+            padding-top: 10px;
+        }
+
+        td,
+        th {
+            text-align: center;
+			border-left: 1px lightgrey solid;
+        }
+
+		td {
+			
+		}
+
+        input[type=number] {
+            border-radius: 5px;
+        }
+
+        table{
+          background-color: white;
+        }
+
+        th.rotate {
+          /* Something you can count on */
+          height: 10px;
+          white-space: nowrap;
+        }
+
+        th.rotate > div {
+          transform:
+            /* Magic Numbers */
+            translate(0px, 161px)
+            /* 45 is really 360 - 45 */
+            rotate(90deg);
+          width: 10px;
+        }
+
+		.selected {
+			background-color: grey;
+			color: white;
+		}
+		.notselected {
+			background-color: white;
+			color: black;
+		}
+
 .custom-dropdown--large {
 	font-size: 1.5em;
 }
@@ -34,7 +94,6 @@
 		border-radius: 3px;
 		-webkit-appearance: none;
 		-moz-appearance: none;
-		appearance: none;
 	}
 
 	.custom-dropdown::before,

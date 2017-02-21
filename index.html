@@ -11,58 +11,8 @@
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: cornflowerblue;
-        }
-
-        h1 {
-            color: white;
-            font-weight: bold;
-        }
-
-        h2 {
-            font-weight: bold;
-        }
-
-        .form_label {
-            padding-top: 10px;
-        }
-
-        td,
-        th {
-            text-align: center;
-        }
-
-        input[type=number] {
-            border-radius: 5px;
-        }
-
-        table{
-          background-color: white;
-        }
-
-        th.rotate {
-          /* Something you can count on */
-          height: 10px;
-          white-space: nowrap;
-        }
-
-        th.rotate > div {
-          transform:
-            /* Magic Numbers */
-            translate(0px, 161px)
-            /* 45 is really 360 - 45 */
-            rotate(90deg);
-          width: 10px;
-        }
-        th.rotate > div > span {
-        }
-    </style>
 
     <body>
-
         <div class="container">
 
             <div ng-app ng-init="qty=1;cost=0.75;width=1;height=1;">
@@ -350,12 +300,13 @@
         var second = $("#joinSelect option:selected").text();
         var theCode = first + second;
         theCode = theCode.replace(/\D/g, '');
-        //alert(theCode);
         $("#" + theCode + "").css("background-color", "grey");
+        $("#" + theCode + "").css("color", "white");        
     }
 
     function resetTable() {
-      $("td").css("background-color","");
+        $("td").css("background-color","");
+        $("td").css("color","black");
     }
 </script>
 </html>
